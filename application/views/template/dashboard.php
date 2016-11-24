@@ -1,19 +1,34 @@
-		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<div style="margin-left: 150px; width: 500px; height: 500px;">
+<canvas id="myChart" width="10" height="10"></canvas>
+</div>
+<script src="<?php echo base_url()?>assets/jquery/Chart.js"></script>
+<!-- <?php
 
-    <?php echo $this->session->flashdata('alert_msg'); ?>
+echo "<pre>";
+print_r ($datajml);
+echo "</pre>"; 
 
-		<h1 class="page-header"><?php echo $judul?></h1>
-		
-<canvas id="myChart" width="400" height="400"></canvas>
+?>
+ -->
+</table>
 <script>
 var ctx = document.getElementById("myChart");
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+</script>
+<script src="Chart.min.js"></script>
+<script>
+
+
+var data = {
+    labels: ["Total Siswa", "Total Kelas"],
+    datasets: [
+        {
+            label: "Data Smp 1 Karanggue",
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -30,17 +45,26 @@ var myChart = new Chart(ctx, {
                 'rgba(153, 102, 255, 1)',
                 'rgba(255, 159, 64, 1)'
             ],
-            borderWidth: 1
-        }]
-    },
+            borderWidth: 1,
+            data: [<?php echo count($datajml) ?>, <?php echo count($datakelas)?>],
+        }
+    ]
+};
+
+var myBarChart = new Chart(ctx, {
+    type: 'bar',
+    data: data,
     options: {
         scales: {
+            xAxes: [{
+                stacked: true
+            }],
             yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
+                stacked: true
             }]
         }
     }
 });
 </script>
+</body>
+</html>

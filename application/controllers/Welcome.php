@@ -22,6 +22,7 @@ class Welcome extends Auth_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->model("M_siswa");
 		
 	}
 	public function index()
@@ -29,6 +30,8 @@ class Welcome extends Auth_Controller {
 		$data ['judul']	= "Halaman Dashboard";
 		// $data ['content'] = $this->load->view('template/dashboard',$data);
 		// $this->load->view('template/base_template',$data);
+		$data['datajml'] = $this->M_siswa->getjml();
+		$data['datakelas'] = $this->M_siswa->getkelas();
 		$this->load_template('template/dashboard', $data);
 	}
 }

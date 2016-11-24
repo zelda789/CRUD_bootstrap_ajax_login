@@ -101,7 +101,7 @@ class M_siswa extends CI_Model {
 		return $query->row();
 	}
 
-		public function remove($id = null) {
+	public function remove($id = null) {
 		if($id) {
 			$sql = "DELETE FROM siswa WHERE id = ?";
 			$query = $this->db->query($sql, array($id));
@@ -109,6 +109,19 @@ class M_siswa extends CI_Model {
 			// ternary operator
 			return ($query === true) ? true : false;			
 		} // /if
+	}
+
+	public function getjml()
+	{
+		$sql = "select * from siswa ";
+		$query = $this->db->query($sql);
+		return $query->result_array();
+	}
+	public function getkelas()
+	{
+		$sql = "select * from kelas ";
+		$query = $this->db->query($sql);
+		return $query->result_array();
 	}
 
 }
